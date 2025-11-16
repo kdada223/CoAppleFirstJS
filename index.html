@@ -14,7 +14,18 @@
   <div class="black-bg">
     <div class="white-bg">
       <h4>로그인하세요</h4>
-      <button class="btn btn-danger" id="close">닫기</button>
+
+      <form action="success.html">
+        <div class="my-3">
+          <input type="text" class="form-control" id="idInput">
+        </div>
+        <div class="my-3">
+          <input type="password" class="form-control" id="passInput">
+        </div>
+        <button type="submit" class="btn btn-primary" id="post">전송</button>
+        <button type="button" class="btn btn-danger" id="close">닫기</button>
+      </form>
+
     </div>
   </div>
 
@@ -34,8 +45,10 @@
     <li class="list-group-item">And a fifth one</li>
   </ul>
 
-  <button class="loginBtn">로그인</button>
-
+  <div class="mainBg">
+    <h4>Shirts on Sale</h4>
+    <button class="loginBtn btn btn-danger">로그인</button>
+  </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   <script src="script.js"></script>
 </body>

@@ -23,3 +23,21 @@ document.querySelector('.loginBtn').addEventListener('click', function () {
 document.getElementById('close').addEventListener('click', function () {
 	document.querySelector('.black-bg').classList.remove('noneModal');
 });
+// form부분
+document.getElementById('post').addEventListener('click', function (event) {
+	const formId = document.getElementById('idInput').value; // 클릭할 때마다 최신 값 가져오기
+	const formPass = document.getElementById('passInput').value;
+	if (formId === '' && formPass === '') {
+		event.preventDefault();
+		alert('아이디 비번 입력하삼');
+	} else if (formId === '') {
+		event.preventDefault();
+		alert('아이디 입력하삼');
+	} else if (formPass === '') {
+		event.preventDefault();
+		alert('비번 입력하삼');
+	} else if (formPass.length < 6) {
+		event.preventDefault();
+		alert('길이부족');
+	}
+});
