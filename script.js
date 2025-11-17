@@ -38,6 +38,6 @@ document.getElementById('post').addEventListener('click', function (event) {
 		alert('비번 입력하삼');
 	} else if (formPass.length < 6) {
 		event.preventDefault();
-		alert('길이부족');
+		alert('길이부족함');
 	}
 });
