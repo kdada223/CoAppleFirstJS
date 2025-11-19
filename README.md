@@ -1,6 +1,5 @@
 # 코딩애플 JavaScript 강의 학습 기록
 
-![progress](https://img.shields.io/badge/Progress-34%2F120-4CAF50?style=flat-square)
 ![velocity](https://img.shields.io/badge/Daily_lectures-2~3-3B82F6?style=flat-square)
 ![status](https://img.shields.io/badge/Status-In%20Progress-F59E0B?style=flat-square)
 
@@ -197,7 +196,6 @@ const id = setInterval(function () {
 - Velog 주소: https://velog.io/@kangh0852/posts
 
 ---
-
 
 ## ⚠️ 저작권 / 사용주의
 
