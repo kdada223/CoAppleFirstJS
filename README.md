@@ -1,288 +1,207 @@
-# 🎯 코딩애플 JavaScript 학습 레포 (JS 연습장)
+# 코딩애플 JavaScript 강의 학습 기록
 
 ![progress](https://img.shields.io/badge/Progress-34%2F120-4CAF50?style=flat-square)
 ![velocity](https://img.shields.io/badge/Daily_lectures-2~3-3B82F6?style=flat-square)
 ![status](https://img.shields.io/badge/Status-In%20Progress-F59E0B?style=flat-square)
 
-요약  
-이 레포는 코딩애플 JavaScript 강의 수강과 문제 풀이, 실험(playground), 일일 회고 기록을 위한 개인 학습 저장소입니다. 강의 요약·풀이·실험·회고를 꾸준히 쌓아 포트폴리오와 학습 이력을 증명하는 목적입니다.
+> 목적: 단순 수강에 그치지 않고, 각 개념을 재정리 · 문제 변형 풀이 · 실험 · 회고로 JS 기초를 탄탄히 다지기  
+> 운영 원칙: 강의별로 정리(lectures) · 문제풀이 기록(exercises) · 자유 실험(playground) · 일별 회고(notes). Velog는 수동 링크로 연결(주 1~3회만 작성).
 
 ---
 
-## 목차
-
-- 목적
-- 구조
-- 파일/네이밍 규칙
-- 일일 루틴(권장)
-- 템플릿
-  - 강의 요약 템플릿
-  - 문제 풀이 템플릿
-  - 일일 회고 템플릿
-  - 플레이그라운드 가이드
-- 커밋/브랜치 규칙
-- Velog / 외부 글 연동
-- 자동화(선택)
-- 유지/관리 팁
-
----
-
-## 목적
-
-- 강의 내용의 핵심을 정리하여 이해도를 높임
-- 문제 풀이 기록으로 알고리즘/문제해결 능력 증명
-- 실험 코드를 통해 개념 검증(실험 → 실패도 기록)
-- Velog와 연계하여 글·코드 모두 증거로 남김
-
----
-
-## 디렉터리 구조 (권장)
+## 📂 디렉터리 구조 (권장)
 
 ```
 /
 ├─ README.md
-├─ lectures/          # 강의별 핵심 요약(.md)
-├─ exercises/         # 강의 문제 및 풀이(.js)
-├─ playground/        # 실험용 코드(try 파일)
-├─ notes/             # 회고(일별/주별/월별)
+├─ MainStudy          # 실습용 정적 파일(.html/.css/.js) — 실제 작동 확인용
+├─ lectures/          # 강의별 핵심 요약(.md) — 강의 1개당 1파일
+├─ exercises/         # 강의 문제 및 풀이(.js) — 문제별 파일, 실패·개선 버전 포함
+├─ playground/        # 실험용 코드(try 파일.js) — 엣지 케이스/벤치마크 등 자유실험
+├─ notes/             # 회고(일별/주별/월별 .md)
 ├─ assets/            # 이미지/GIF/스크린샷
-└─ .github/           # PR/Issue 템플릿 등(권장)
+└─ .github/           # PR/Issue/PR 템플릿, 워크플로
 ```
 
 ---
 
-## 파일 네이밍 규칙
+## 🗃 파일 네이밍 규칙 (권장)
 
-- 강의 요약: `01-변수와스코프.md` 또는 `07-prototype.md`
-- 문제 풀이: `15-array-flatten.js` (번호-짧은설명)
+- 강의 요약: `Chap2-setTimeOutsetInterval.md` (Chap/번호-주제.md)
+- 문제 풀이: `Chap2-setTimeOutsetInterval.js` (강의번호-주제.js)
 - 플레이그라운드: `event-loop-order-try.js`
-- 일일 회고: `notes/2025-11-19-retro.md`
-- 주간 인덱스: `notes/index-2025-week47.md`
-- 월간 요약: `notes/2025-11-summary.md`
-
-파일 이름에 날짜/번호를 붙이면 정렬과 추적이 편해집니다.
+- 일일 회고: `2025-11-19-retro.md`
+- 주간 인덱스: `index-2025-11-first.md`
+- 월간 요약: `2025-11-summary.md`
 
 ---
 
-## 오늘 루틴(권장)
+## ✅ 오늘 루틴(권장)
 
 1. 강의 시청: 2~3개
-2. lectures/ 에 핵심 요약 작성 (5~10줄)
-3. exercises/ 에 문제 풀이 업로드 (실패 버전 포함)
-4. playground/ 에 실험 코드로 개념 검증
-5. notes/ 에 일일 회고 작성 (간단 회고 + 내일 목표)
-6. Velog에 핵심 회고/정리 업로드 → README 또는 해당 강의 파일에 Velog 링크 추가
-7. 커밋과 PR(혼자라도 브랜치 → PR → Squash)로 기록 남기기
+2. `lectures/`에 강의별 핵심 요약(3~10줄) 및 헷갈린 점·해결 기록
+3. `exercises/`에 문제 풀이 업로드(원래 풀이 + 실패/개선 버전)
+4. `playground/`에서 개념 검증(짧은 실험 코드)
+5. `notes/`에 일일 회고(막힌 점/해결/내일 목표)
+6. 커밋 & PR: 작업 단위별 브랜치 → PR(혼자라도) → Self-review → Squash merge → 브랜치 삭제
+
+(참고: Velog는 주 1~3회 정도 수동으로 요약/회고를 업로드하고 있습니다.)
 
 ---
 
-## 템플릿
+## ✍️ 작성 가이드 (항목별)
 
-### 강의 요약 템플릿 (lectures/NN-title.md)
+### lectures/ — 강의 한 개당 한 파일
+
+목적: 강의 핵심 개념을 빠르게 복습 가능하도록 정리  
+구성 추천:
+
+- 제목 (Chap/강의명 + 날짜)
+- 핵심 요약(3~7개 문장)
+- 문제/퀴즈(간단 설명 + 정답 요약)
+- 헷갈린 점 & 해결(실수/디버깅 팁)
+- 추가 실험(플레이그라운드 파일 링크)
+- Velog 링크(관련된 내용으로 글을 작성했다면 첨부)
+
+예시(파일: `lectures/Chap2-setTimeOutsetInterval.md`):
 
 ```md
-# 07 - Prototype
+# Chap2 - setTimeout, setInterval (2025-11-19)
 
 ## 핵심 요약
 
-- 프로토타입 체인은 **proto** 로 상위 객체를 탐색한다.
-- 메서드는 prototype에 두어 메모리 공유를 권장한다.
+- setTimeout: 일정 시간 이후 단발 실행
+- setInterval: 주기적 반복 실행
+- DOM 조작: querySelector / innerHTML / style.display
 
-## 헷갈린 점 / 해결
+## 실습/문제(요약)
 
-- Circle.prototype = {} 로 교체하면 constructor가 사라진다 → 복구 필요
+- 5초 알림 div에서 1초마다 숫자 감소, 0이 되면 숨김 (exercises/Chap2-setTimeOutsetInterval.js)
+
+## 헷갈림 / 해결
+
+- num 변수를 setInterval 내부에 두면 매번 초기화되는 문제 → 함수 밖으로 이동해 해결
 
 ## 추가 실험
 
-- prototype 재정의 vs 기존 객체 확장 성능 비교 (playground/ 참고)
+- clearInterval 사용 실습 (playground/timer-clear-try.js)
 
 ## Velog
 
-- https://velog.io/@yourid/...
+- 위와 동일
 ```
 
-### 문제 풀이 템플릿 (exercises/NN-name.js)
+---
+
+### exercises/ — 문제별 코드 + 설명
+
+목적: 문제 풀이와 개선 과정을 코드와 주석으로 남기기  
+구성 추천:
+
+- 상단 주석: 문제 설명(HTML 필요 시 포함)
+- 풀이 코드
+- 간단 테스트/실행 방법
+- 실패 경험/해결 메모
+
+예시(파일: `exercises/Chap2-setTimeOutsetInterval.js`):
 
 ```js
-// 15-array-flatten.js
-// 목적: 중첩 배열 평탄화 (재귀 vs 스택)
-// 작성자: yourname
-// 실행: node exercises/15-array-flatten.js
+// 문제: <div class="alert alert-danger">5초 이내 구매시 사은품 증정</div>
+// 1초마다 숫자 감소, 0되면 숨김
 
-function flattenRecursive(arr) {
-	return arr.reduce((acc, cur) => acc.concat(Array.isArray(cur) ? flattenRecursive(cur) : cur), []);
-}
-
-function flattenStack(arr) {
-	const stack = [...arr];
-	const res = [];
-	while (stack.length) {
-		const item = stack.pop();
-		if (Array.isArray(item)) {
-			stack.push(...item);
-		} else {
-			res.push(item);
-		}
+let num = 5;
+const id = setInterval(function () {
+	const buyAlert = document.querySelector('.alert-danger');
+	if (!buyAlert) {
+		clearInterval(id);
+		return;
 	}
-	return res.reverse();
-}
+	buyAlert.innerHTML = `${num}초 이내 구매시 사은품 증정`;
+	if (num <= 0) {
+		buyAlert.style.display = 'none';
+		clearInterval(id);
+	}
+	num--;
+}, 1000);
 
-// 간단 테스트
-console.log(flattenRecursive([1, [2, [3]], 4]));
-console.log(flattenStack([1, [2, [3]], 4]));
+// 실패 경험: num을 인터벌 내부에 선언 → 매번 초기화되어 숫자 감소 안됨
 ```
 
-### 일일 회고 템플릿 (notes/YYYY-MM-DD-retro.md)
+---
+
+### playground/ — 자유 실험실
+
+목적: 엣지 케이스, 벤치마크, 타이머/이벤트 루프 실험 등
+
+- 자유롭게 실패/실험 코드를 두고, 잘 되면 lectures/exercises로 승격
+- 파일명 예: `playground/event-loop-compare-try.js`
+
+예시 아이디어:
+
+- setTimeout vs Promise.then 실행 순서 실험
+- 정규식 케이스별 테스트 스크립트
+- 메모리 누수 간단 벤치
+
+---
+
+### notes/ — 회고 (일별/주별/월별)
+
+목적: 공부 흐름·막힘 패턴·다음 목표를 기록해 누적 회고 만들기
+
+- 일별: `YYYY-MM-DD-retro.md` — 그날 배운 것, 핵심 3개, 막힌 점, 내일 목표
+- 주간/월간: 핵심 패턴/발전/우선순위 정리
+
+예시(파일: `notes/2025-11-19-retro.md`):
 
 ```md
 # 2025-11-19 회고
 
 ## 오늘 한 강의 / 문제
 
-- Lecture 07 Prototype / Exercise 15 Array Flatten
+- setTimeout, setInterval / 정규식 기초
 
 ## 핵심 개념 픽 3
 
-1. 프로토타입 체인 탐색 (**proto**)
-2. constructor 소실 주의
-3. 재귀 vs 스택
+1. setTimeout은 비동기 단발
+2. 정규식 `/[A-Z]/`로 대문자 체크
+3. form submit 이벤트 preventDefault로 동작 제어
 
 ## 막힌 점 & 해결 시도
 
-- 이벤트 루프 순서(setTimeout vs Promise) → playground/event-loop-order-try.js 실험 예정
-
-## 코드/실험 링크
-
-- lectures/07-prototype.md
-- exercises/15-array-flatten.js
-
-## Velog
-
-- https://velog.io/@yourid/...
-
-## 내일 목표(1~2개)
-
-- 이벤트 루프 다이어그램 그리기
-- prototype 성능 미니 벤치
-
-## 짧은 자기 피드백
-
-- 핵심 요약 양 괜찮음(7줄 내외)
-```
-
----
-
-## Playground(실험 공간)
-
-- 목적: 아이디어/의문을 빠르게 검증(완성도 불필요)
-- 규칙:
-  - 파일명: `<주제>-try.js` (예: `event-loop-order-try.js`)
-  - 상단 주석에 목적/실행/예상 결과/참조링크 명기
-  - 유용하면 main 코드로 승격(파일 이동)하고, 그렇지 않으면 보존
-- 예시 (playground/event-loop-order-try.js):
-
-```js
-console.log('A sync start');
-setTimeout(() => console.log('E setTimeout'), 0);
-Promise.resolve().then(() => console.log('B promise then'));
-queueMicrotask(() => console.log('D queueMicrotask'));
-console.log('F sync end');
-```
-
----
-
-## 커밋 / 브랜치 규칙 (권장)
-
-- 브랜치: feat/..., fix/..., refactor/..., docs/...
-- 커밋 메시지: Conventional Commits 권장
-  - feat: add event loop experiment
-  - docs: add daily retro 2025-11-19
-  - fix: correct flatten algorithm
-- 혼자 작업 시에도 PR → Self-review → Squash and merge 권장
-
----
-
-## Velog 연동 (추천)
-
-- Velog 글을 작성하면 해당 강의 .md / 회고 파일 상단에 Velog 링크를 추가하세요.
-- README에 최신 Velog 글 목록을 자동으로 삽입하려면 GitHub Actions로 RSS 파싱 워크플로(예전 대화 참고)를 설정할 수 있습니다.
-
----
-
-## 간단 자동화 스크립트 (오늘 회고 빠르게 생성)
-
-아래 스크립트를 `.bin/create-daily-retro.sh` 등으로 두고 실행하면 오늘 회고 파일을 자동 생성합니다.
-
-```bash
-#!/usr/bin/env bash
-TODAY=$(date +%Y-%m-%d)
-FILE="notes/${TODAY}-retro.md"
-if [ -f "$FILE" ]; then
-  echo "already exists: $FILE"
-else
-  cat > "$FILE" <<EOF
-# ${TODAY} 회고
-## 오늘 한 강의 / 문제
--
-
-## 핵심 개념 픽 3
-1.
-2.
-3.
-
-## 막힌 점 & 해결 시도
--
-
-## 코드/실험 링크
--
-
-## Velog
--
+- 이메일 정규식 조건 반전(!)을 빼먹어 잘못된 통과 → !로 반전 처리해 해결
 
 ## 내일 목표
--
 
-## 짧은 자기 피드백
--
-EOF
-  echo "created: $FILE"
-fi
+- 캐러셀 구현, return 문법 및 소수 처리 복습
 ```
 
-(실행 권한 필요: `chmod +x .bin/create-daily-retro.sh`)
+---
+
+## 🔁 커밋 · PR 규칙 (권장)
+
+- 브랜치: `feat/`, `fix/`, `docs/`, `refactor/`, `chore/` 접두사 사용
+- 커밋 메시지(Conventional style 예시):
+  - `feat: add Chap2 timer exercise`
+  - `docs: add lecture Chap2 summary`
+  - `fix: correct regex validation`
+- PR 흐름(혼자라도 권장): 브랜치 → PR 작성(간단 Summary / How to test / Checklist) → Self-review → Squash & merge → 브랜치 삭제
+
+간단 PR 템플릿은 .github에 추가해두면 편리합니다.
 
 ---
 
-## 권장 추가 파일 (프로젝트 루트에 두세요)
+## 🔗 Velog (연동 방식)
 
-- `.editorconfig`, `.prettierrc`, `.eslintrc.json` : 포맷/규칙 통일
-- `.github/pull_request_template.md` : PR 작성 템플릿
-- `.github/ISSUE_TEMPLATE/` : 버그/기능 요청 템플릿
-
----
-
-## 유지/관리 팁
-
-- 기록은 삭제하지 말고 누적하세요. (일자별 파일 → 주간 인덱스 → 월간 요약)
-- 큰 실습 레포는 `exclude_repo`로 언어 비율 카드 왜곡 방지
-- Velog 포스트와 레포 파일을 서로 링크하면 신뢰도 상승
-- 주기적으로(주/월) README의 진행률 배지 숫자를 업데이트하거나 자동화하세요
+- Velog 자동화는 사용하지 않습니다.
+- Velog는 주 1~3회 수동으로 요약/회고 업로드 예정 — 각 lectures 파일 상단에 수동으로 링크만 추가하세요.
+- Velog 주소: https://velog.io/@kangh0852/posts
 
 ---
 
-## 예시 요약(복사해서 사용)
 
-- 강의 요약 예시: `lectures/07-prototype.md`
-- 문제 풀이 예시: `exercises/15-array-flatten.js`
-- 회고 예시: `notes/2025-11-19-retro.md`
-- 실험 예시: `playground/event-loop-order-try.js`
+## ⚠️ 저작권 / 사용주의
+
+- 강의 원본 코드는 그대로 복제하지 않습니다. (학습 목적: 핵심 로직 재작성 + 출처 표기)
+- 공개 저장소이므로 민감 정보(비밀번호, API 키 등)는 절대 커밋하지 마세요.
 
 ---
-
-필요하시면:
-
-- 이 README를 그대로 repo에 커밋할 수 있는 파일 형태(.md)로 만들어 드리겠습니다.
-- Velog 최신글 자동 삽입 워크플로(.github/workflows)도 함께 생성해 드릴게요.
-- `.editorconfig` / `.prettierrc` / `.eslintrc.json` 파일도 바로 만들어 드릴까요?
-
-원하시는 다음 동작을 알려주세요.
