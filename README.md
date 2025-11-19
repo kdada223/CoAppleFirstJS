@@ -18,8 +18,7 @@
 ├─ exercises/         # 강의 문제 및 풀이(.js) — 문제별 파일, 실패·개선 버전 포함
 ├─ playground/        # 실험용 코드(try 파일.js) — 엣지 케이스/벤치마크 등 자유실험
 ├─ notes/             # 회고(일별/주별/월별 .md)
-├─ assets/            # 이미지/GIF/스크린샷
-└─ .github/           # PR/Issue/PR 템플릿, 워크플로
+└─ assets/            # 이미지/GIF/스크린샷
 ```
 
 ---
@@ -184,8 +183,6 @@ const id = setInterval(function () {
   - `docs: add lecture Chap2 summary`
   - `fix: correct regex validation`
 - PR 흐름(혼자라도 권장): 브랜치 → PR 작성(간단 Summary / How to test / Checklist) → Self-review → Squash & merge → 브랜치 삭제
-
-간단 PR 템플릿은 .github에 추가해두면 편리합니다.
 
 ---
 
