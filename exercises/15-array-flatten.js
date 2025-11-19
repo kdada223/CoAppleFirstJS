@@ -1,3 +1,30 @@
+// 15-array-flatten.js
+// 목적: 중첩 배열 평탄화 (재귀 vs 스택)
+// 작성자: yourname
+// 실행: node exercises/15-array-flatten.js
+
+function flattenRecursive(arr) {
+	return arr.reduce((acc, cur) => acc.concat(Array.isArray(cur) ? flattenRecursive(cur) : cur), []);
+}
+
+function flattenStack(arr) {
+	const stack = [...arr];
+	const res = [];
+	while (stack.length) {
+		const item = stack.pop();
+		if (Array.isArray(item)) {
+			stack.push(...item);
+		} else {
+			res.push(item);
+		}
+	}
+	return res.reverse();
+}
+
+// 간단 테스트
+console.log(flattenRecursive([1, [2, [3]], 4]));
+console.log(flattenStack([1, [2, [3]], 4]));
+
 // 다크모드 boolean
 let dark = true;
 document.querySelector('.bg-dark').addEventListener('click', function () {
