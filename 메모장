@@ -1,3 +1,30 @@
+// 15-array-flatten.js
+// 목적: 중첩 배열 평탄화 (재귀 vs 스택)
+// 작성자: yourname
+// 실행: node exercises/15-array-flatten.js
+
+function flattenRecursive(arr) {
+	return arr.reduce((acc, cur) => acc.concat(Array.isArray(cur) ? flattenRecursive(cur) : cur), []);
+}
+
+function flattenStack(arr) {
+	const stack = [...arr];
+	const res = [];
+	while (stack.length) {
+		const item = stack.pop();
+		if (Array.isArray(item)) {
+			stack.push(...item);
+		} else {
+			res.push(item);
+		}
+	}
+	return res.reverse();
+}
+
+// 간단 테스트
+console.log(flattenRecursive([1, [2, [3]], 4]));
+console.log(flattenStack([1, [2, [3]], 4]));
+
 // 다크모드 boolean
 let dark = true;
 document.querySelector('.bg-dark').addEventListener('click', function () {
@@ -112,29 +139,3 @@ document.getElementById('send-answer').addEventListener('click', function () {
 		alert('성공');
 	}
 });
-//====================================== 11-19 setTimeOut ,정규식, 캐러셀   ===========================================
-// setTimeout(function () {
-// 	document.querySelector('.alert-danger').style.display = 'none';
-// }, 5000);
-// setTimeout(function(){ 실행할코드~ }, 기다릴시간);
-// 반복해서 사용하고 싶다면? setInterval()
-// if let function 이런건 자바스크립트 문법
-// document setTimeout alert 이런건 브라우저 사용법 서로 다른거임
-// 문제
-// 위에서 만든 <div>안에 "5초 이내 구매시 사은품 증정" 이라는 문자가 있습니다.
-// 1초마다 5라는 문자를 1씩 감소시켜봅시다.
-// 0이 되면 <div>를 안보이게 처리합시다.
-
-<div class='alert alert-danger'>5초 이내 구매시 사은품 증정</div>;
-
-let num = 5;
-setInterval(function () {
-	let buyAlert = document.querySelector('.alert-danger');
-
-	buyAlert.innerHTML = `${num}초 이내 구매시 사은품 증정`;
-
-	if (num <= 0) {
-		buyAlert.style.display = 'none';
-	}
-	num--;
-}, 1000);

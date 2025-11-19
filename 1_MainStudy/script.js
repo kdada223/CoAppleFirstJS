@@ -18,9 +18,11 @@ document.getElementById('close').addEventListener('click', function () {
 	document.querySelector('.black-bg').classList.remove('noneModal');
 });
 // form부분
-document.getElementById('post').addEventListener('click', function (event) {
+document.querySelector('.loginForm').addEventListener('submit', function (event) {
 	const formId = document.getElementById('idInput').value; // 클릭할 때마다 최신 값 가져오기
 	const formPass = document.getElementById('passInput').value;
+	const email정규식 = /\S+@\S+\.\S+/;
+	const passWord대문자정규식 = /[A~Z]/;
 	if (formId === '' && formPass === '') {
 		event.preventDefault();
 		alert('아이디 비번 입력하삼');
@@ -30,6 +32,14 @@ document.getElementById('post').addEventListener('click', function (event) {
 	} else if (formPass === '') {
 		event.preventDefault();
 		alert('비번 입력하삼');
+	}
+
+	if (!email정규식.test(formId)) {
+		alert('이메일 형식이 아님');
+		event.preventDefault();
+	} else if (!passWord대문자정규식.test(formPass)) {
+		alert('대문자없음');
+		event.preventDefault();
 	} else if (formPass.length < 6) {
 		event.preventDefault();
 		alert('길이부족함');
