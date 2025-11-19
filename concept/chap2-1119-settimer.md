@@ -1,4 +1,4 @@
-# Chapter2 TimeOut ~ 03
+# Chapter2 TimeOut ~ 정규식 공부
 
 ## 핵심 요약
 
