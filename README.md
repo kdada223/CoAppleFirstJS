@@ -18,19 +18,20 @@
 ├─ exercises/         # 강의 문제 및 풀이(.js) — 문제별 파일, 실패·개선 버전 포함
 ├─ playground/        # 실험용 코드(try 파일.js) — 엣지 케이스/벤치마크 등 자유실험
 ├─ notes/             # 회고(일별/주별/월별 .md)
-└─ assets/            # 이미지/GIF/스크린샷
+├─ assets/            # 이미지/GIF/스크린샷
+└─ .github/           # PR/Issue/PR 템플릿, 워크플로
 ```
 
 ---
 
 ## 🗃 파일 네이밍 규칙 (권장)
 
-- 강의 요약: `Chap2-setTimeOutsetInterval.md` (Chap/번호-주제.md)
-- 문제 풀이: `Chap2-setTimeOutsetInterval.js` (강의번호-주제.js)
-- 플레이그라운드: `event-loop-order-try.js`
-- 일일 회고: `2025-11-19-retro.md`
-- 주간 인덱스: `index-2025-11-first.md`
-- 월간 요약: `2025-11-summary.md`
+- 강의 요약: `Chap2-setTimeOutsetInterval.md` (Chap번호-주제.md)
+- 문제 풀이: `Chap2-setTimeOutsetInterval.js` (Chap번호-주제.js)
+- 플레이그라운드: `event-setTimeOutsetInterval.js` (event-주제.js)
+- 일일 회고: `2025-11-19-daily.md`	(날짜-daily.md)
+- 주간 인덱스: `2025-11-second-week.md` (날짜-주차-week.md)
+- 월간 요약: `2025-11-month.md` (날짜-month.md)
 
 ---
 
@@ -91,7 +92,7 @@
 
 ---
 
-### exercises/ — 문제별 코드 + 설명
+### exercises/ — 문제별 코드 + 설명(강의 한개당 한파일)
 
 목적: 문제 풀이와 개선 과정을 코드와 주석으로 남기기  
 구성 추천:
@@ -127,7 +128,7 @@ const id = setInterval(function () {
 
 ---
 
-### playground/ — 자유 실험실
+### playground/ — 자유 실험실 (실험할 내용 존재할 시 생성)
 
 목적: 엣지 케이스, 벤치마크, 타이머/이벤트 루프 실험 등
 
@@ -183,6 +184,8 @@ const id = setInterval(function () {
   - `docs: add lecture Chap2 summary`
   - `fix: correct regex validation`
 - PR 흐름(혼자라도 권장): 브랜치 → PR 작성(간단 Summary / How to test / Checklist) → Self-review → Squash & merge → 브랜치 삭제
+
+간단 PR 템플릿은 .github에 추가해두면 편리합니다.
 
 ---
 
