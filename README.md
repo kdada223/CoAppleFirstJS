@@ -147,10 +147,10 @@ const id = setInterval(function () {
 
 목적: 공부 흐름·막힘 패턴·다음 목표를 기록해 누적 회고 만들기
 
-- 일별: `YYYY-MM-DD-retro.md` — 그날 배운 것, 핵심 3개, 막힌 점, 내일 목표
+- 일별: 2025-11-19-daily.md` — 그날 배운 것, 핵심 3개, 막힌 점, 내일 목표
 - 주간/월간: 핵심 패턴/발전/우선순위 정리
 
-예시(파일: `notes/2025-11-19-retro.md`):
+예시(파일: `notes/2025-11-19-daily.md`):
 
 ```md
 # 2025-11-19 회고
@@ -184,8 +184,6 @@ const id = setInterval(function () {
   - `docs: add lecture Chap2 summary`
   - `fix: correct regex validation`
 - PR 흐름(혼자라도 권장): 브랜치 → PR 작성(간단 Summary / How to test / Checklist) → Self-review → Squash & merge → 브랜치 삭제
-
-간단 PR 템플릿은 .github에 추가해두면 편리합니다.
 
 ---
 
