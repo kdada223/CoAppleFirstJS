@@ -18,8 +18,8 @@
 ├─ exercises/         # 강의 문제 및 풀이(.js) — 문제별 파일, 실패·개선 버전 포함
 ├─ playground/        # 실험용 코드(try 파일.js) — 엣지 케이스/벤치마크 등 자유실험
 ├─ notes/             # 회고(일별/주별/월별 .md)
-├─ assets/            # 이미지/GIF/스크린샷
-└─ .github/           # PR/Issue/PR 템플릿, 워크플로
+└─ assets/            # 이미지/GIF/스크린샷
+ 
 ```
 
 ---
@@ -133,7 +133,7 @@ const id = setInterval(function () {
 목적: 엣지 케이스, 벤치마크, 타이머/이벤트 루프 실험 등
 
 - 자유롭게 실패/실험 코드를 두고, 잘 되면 lectures/exercises로 승격
-- 파일명 예: `playground/event-loop-compare-try.js`
+- 파일명 예: `event-setTimeOutsetInterval.js`
 
 예시 아이디어:
 
