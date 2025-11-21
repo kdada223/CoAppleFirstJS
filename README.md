@@ -31,6 +31,22 @@
 - 일일 회고: `2025-11-19-daily.md` (날짜-daily.md)
 - 주간 인덱스: `2025-11-second-week.md` (날짜-주차-week.md)
 - 월간 요약: `2025-11-month.md` (날짜-month.md)
+=======
+├─ assets/            # 이미지/GIF/스크린샷
+└─ .github/           # PR/Issue/PR 템플릿, 워크플로
+```
+
+---
+
+## 🗃 파일 네이밍 규칙 (권장)
+
+- 강의 요약: `Chap2-setTimeOutsetInterval.md` (Chap/번호-주제.md)
+- 문제 풀이: `Chap2-setTimeOutsetInterval.js` (강의번호-주제.js)
+- 플레이그라운드: `event-loop-order-try.js`
+- 일일 회고: `2025-11-19-retro.md`
+- 주간 인덱스: `index-2025-11-first.md`
+- 월간 요약: `2025-11-summary.md`
+
 
 ---
 
@@ -91,10 +107,12 @@
 
 ---
 
+
 ### exercises/ — 문제별 코드 + 설명(강의 한개당 한파일)
 
-**목적:** 문제 풀이와 개선 과정을 코드와 주석으로 남기기  
-**구성 추천:**
+
+목적: 문제 풀이와 개선 과정을 코드와 주석으로 남기기  
+구성 추천:
 
 - 상단 주석: 문제 설명(HTML 필요 시 포함)
 - 풀이 코드
@@ -127,12 +145,16 @@ const id = setInterval(function () {
 
 ---
 
+
 ### playground/ — 자유 실험실 (실험할 내용 존재할 시 생성)
 
-**목적:** 엣지 케이스, 벤치마크, 타이머/이벤트 루프 실험 등
+
+목적: 엣지 케이스, 벤치마크, 타이머/이벤트 루프 실험 등
 
 - 자유롭게 실패/실험 코드를 두고, 잘 되면 lectures/exercises로 승격
+
 - 파일명 예: `event-setTimeOutsetInterval.js`
+
 
 예시 아이디어:
 
@@ -146,12 +168,14 @@ const id = setInterval(function () {
 
 **목적:** 공부 흐름·막힘 패턴·다음 목표를 기록해 누적 회고 만들기
 
-- 일별: `2025-11-19-daily.md` — 그날 배운 것, 핵심 3개, 막힌 점, 내일 목표
+
+- 일별: 2025-11-19-daily.md` — 그날 배운 것, 핵심 3개, 막힌 점, 내일 목표
 - 주간/월간: 핵심 패턴/발전/우선순위 정리
 
 예시(파일: `notes/2025-11-19-daily.md`):
 
-```markdown
+
+```md
 # 2025-11-19 회고
 
 ## 오늘 한 강의 / 문제
@@ -183,6 +207,7 @@ const id = setInterval(function () {
   - `docs: add lecture Chap2 summary`
   - `fix: correct regex validation`
 - PR 흐름(혼자라도 권장): 브랜치 → PR 작성(간단 Summary / How to test / Checklist) → Self-review → Squash & merge → 브랜치 삭제
+
 
 ---
 
