@@ -21,37 +21,36 @@ console.log('E');
 //그건 일반적인 이유인데 순차적으로 들어간게 프러미스가 먼저 들어가고 마이크로태스크가 뒤에 들어갔기 떄문에 aecdb가 나온것
 //만약 위치를 바꾼다면? aedcb가 나올것
 //결국 자바스크립트 순서는 동기코드 -> 비동기코드인데 여기서 순서는 ( 마이크로태스크 -> 매크로태스크) 이렇게  순서
-https://whales.tistory.com/130#google_vignette
-
-
+//https://whales.tistory.com/130#google_vignette
 
 // (B) setInterval 중복/클리어 실험
 // 실행횟수 '10'
 // 여러 interval을 시작하다가 clear 해볼 때…
-let count1 = 0, count2 = 0;
+let count1 = 0,
+	count2 = 0;
 const start = Date.now();
 
 const id1 = setInterval(() => {
-  const elapsed = Date.now() - start;
-  console.log('1:', ++count1, 'ms:', elapsed);
+	const elapsed = Date.now() - start;
+	console.log('1:', ++count1, 'ms:', elapsed);
 }, 500);
 
 const id2 = setInterval(() => {
-  const elapsed = Date.now() - start;
-  console.log('2:', ++count2, 'ms:', elapsed);
+	const elapsed = Date.now() - start;
+	console.log('2:', ++count2, 'ms:', elapsed);
 }, 600);
 
 setTimeout(() => {
-  clearInterval(id1);
-  console.log('id1 인터벌 종료 at', Date.now() - start, 'ms');
+	clearInterval(id1);
+	console.log('id1 인터벌 종료 at', Date.now() - start, 'ms');
 }, 3000);
 
 setTimeout(() => {
-  clearInterval(id2);
-  console.log('id2 인터벌 종료 at', Date.now() - start, 'ms');
+	clearInterval(id2);
+	console.log('id2 인터벌 종료 at', Date.now() - start, 'ms');
 }, 4000);
 
-//테스트 목적 과연 셋인터벌은 정확히 그 시간에 도착하고 떨어지는가 
+//테스트 목적 과연 셋인터벌은 정확히 그 시간에 도착하고 떨어지는가
 //아니면 조금씩의 밀리는 시간이 있는가?
 //id1이 구조상으로는 6번찍힌 후 3001ms 에 종료되는 것이 맞음
 //id2는 6~7번이지만 7번은 4200ms이기 때문에 안찍히는 것이 옳음
@@ -72,16 +71,14 @@ setTimeout(() => {
 // "id2 인터벌 종료 at" 4012 "ms"
 //몇번을 돌리더라도 시간초가 밀리는 것은 어쩔 수 없었음
 
-
-
 // (C) setTimeout 연쇄/재귀 실험
 // 실행횟수 '10'
 // setInterval 대신 setTimeout을 재귀함수로 써서 “정밀 반복”하는 패턴
 function repeat(n, startTime = Date.now()) {
-  if (n <= 0) return;
-  const elapsed = Date.now() - startTime;
-  console.log('count:', n, 'elapsed(ms):', elapsed);
-  setTimeout(() => repeat(n - 1, startTime), 1000);
+	if (n <= 0) return;
+	const elapsed = Date.now() - startTime;
+	console.log('count:', n, 'elapsed(ms):', elapsed);
+	setTimeout(() => repeat(n - 1, startTime), 1000);
 }
 repeat(5);
 // "count:" 5 "elapsed(ms):" 0
@@ -142,8 +139,6 @@ repeat(5);
 // 차이가 명확하게 드러나서 더욱 깊게 이해할 수 있어요!
 
 // 궁금한 케이스/코드 샘플 요청하면 바로 실험용 코드를 뽑아줄 수도 있습니다.
-
-
 
 // setInterval vs setTimeout 재귀 방식의 시간 지연/정밀도/동작 차이
 //이 두개의 종합적인 내용은 자바스크립트 내 타이머는 정확하지 않다.
