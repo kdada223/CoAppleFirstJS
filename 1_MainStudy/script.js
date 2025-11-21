@@ -57,6 +57,7 @@ document.querySelector('.bg-dark').addEventListener('click', function () {
 	}
 });
 
+
 let num = 5;
 setInterval(function () {
 	let buyAlert = document.querySelector('.alert-danger');
@@ -68,6 +69,7 @@ setInterval(function () {
 	}
 	num--;
 }, 1000);
+
 
 // 오늘의 숙제 :
 
@@ -126,3 +128,4 @@ document.querySelector('.beforeImg').addEventListener('click', function () {
 	imgBox.style.transform = `translateX(-${imgcount * 100}vw)`;
 });
 // (응용2) 사진이 4개, 5개가 되어도 다음버튼 기능이 잘 동작하려면?
+
