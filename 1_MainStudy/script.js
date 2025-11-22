@@ -134,4 +134,5 @@ document.querySelector('.lorem').addEventListener('scroll', function () {
   //2번문제논리: div박스의 스크롤바 내린 양 + 눈에보이는div박스 높이 === 실제높이 비교하면 맞으면 알러트창 띄우기  이렇게 더해줘야함
   //이거 구하는 방법은
   let 디브높이 = document.querySelector('.lorem').clientHeight;
+  //이렇
 });
