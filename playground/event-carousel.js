@@ -1,28 +1,37 @@
-// 1. 이미지 개수 변경 시 인덱스 정상 동작 여부 실험
-// .slide-box를 3 → 5 → 1개 등으로 직접 늘리고 줄여서,
-// “다음/이전” 버튼 클릭 시 순환(경계값)이 정상적으로 동작하는지 로그/슬라이드 이동 확인
-// 테스트 포인트:
-
-// imgcount가 음수/최댓값보다 커지는 상황에서도 슬라이드가 깨지지 않는지
-// 버튼 여러 번 연타, 빠른 연속 클릭, boundary 상황 디버그
-// 2. CSS transform 동작과 화면 변화 실험
-// imgBox.style.transform = ... 부분이 각 버튼 클릭마다 실제로 화면 이동을 제대로 반영하는지
-// 각 imgcount 값에 따라 컨테이너가 정확한 위치에 이동하는지 console.log로 값 찍어보고 실제 UI 변화 대조
-// 테스트 포인트:
-
-// imgcount * 100vw 값이 원하는 위치와 일치하는지
-// 슬라이드 요소 크기/전체 너비 바꿔도 정상 이동하는지
-// 3. 여러 이미지 추가/삭제 실험(확장성 테스트)
-// HTML에서 .slide-box를 동적으로 추가/삭제(코드로 또는 수작업)
-// JS의 imgLen 값을 자동으로 할당해서 캐러셀 버튼 기능이 깨지지 않는지
-// Array.from(document.querySelectorAll('.slide-box')) 활용
-// 테스트 포인트:
-
-// 버튼으로 순환할 때 이미지 추가/삭제에도 에러 없이 동작하는가?
-// carousel 컨테이너 내 이미지 개수만큼만 반복 이동하는가?
-// 추가로 실험해볼 만한 요소:
-
-// “마지막 이미지에서 next 클릭하면 첫 이미지로”
-// “첫 이미지에서 이전 클릭하면 마지막으로”
-// 키보드 이벤트(왼쪽/오른쪽 화살표)와 연동
-// Transition/애니메이션 효과 추가 시 동작 변화
+//이미지를 추가했을 때 자동으로 늘어나게 만들기
+let imgcount = 0;
+let imgBox = document.querySelector('.slide-container');
+let 이미지컨트롤부모 = document.querySelector('.slide-container');
+let 자식수체크 = 이미지컨트롤부모.children.length;
+이미지컨트롤부모.style.width = 자식수체크 * 100 + 'vw'; //이렇게 추가
+document.querySelector('.nextImg').addEventListener('click', function () {
+	//이미지컨트롤부모.style.width = 자식수체크 * 100 + 'vw'; //실패코드 이렇게 넣었더니 문제가 생김 클릭을 했을 때 저 코드가 적용되니 그냥 밖으로 빼서 바로 실행되게 만들어야함
+	imgcount++;
+	if (imgcount >= 자식수체크) imgcount = 0;
+	imgBox.style.transform = `translateX(-${imgcount * 100}vw)`;
+});
+document.querySelector('.beforeImg').addEventListener('click', function () {
+	imgcount--;
+	if (imgcount < 0) imgcount = 자식수체크 - 1; // 0에서 이전 누르면 마지막으로
+	imgBox.style.transform = `translateX(-${imgcount * 100}vw)`;
+});
+// (응용2) 사진이 4개, 5개가 되어도 다음버튼 기능이 잘 동작하려면?
+//이렇게 만들고나서 사진을 복사해서 추가를 했더니 css가 하드코딩되어있어서 아래로 내려감 이거는 완벽한 코드가 아님
+//고로 이미지가 추가가 되면 마찬가지로 width값도 늘어나는 구조가 짜여야함
+//어디서? 위의 코드에서
+//추가 실패코드
+// document.querySelector('.nextImg').addEventListener('click', function () {
+// 	imgcount++;
+// 	if (imgcount > 자식수체크) imgcount = 0;
+// 	imgBox.style.transform = `translateX(-${imgcount * 100}vw)`;
+// });
+// document.querySelector('.beforeImg').addEventListener('click', function () {
+// 	imgcount--;
+// 	if (imgcount < 자식수체크) imgcount = 2; // 0에서 이전 누르면 마지막으로
+// 	imgBox.style.transform = `translateX(-${imgcount * 100}vw)`;
+// });
+//이렇게 작성하면 안되는 점이 많음
+//이미지카운트는 0으로 시작하고 자식수체크는 0,1,2... 이 아닌 1부터 시작하기에 문제가 생긴 것임
+//그렇기에 imgcount의 초기값을 1로 변경을 하는 방법과 자식수체크의 값을 -1해서 수를 새는 방법으로 나눌수있음
+//그리고 이전버튼에서의 문제점은 이전버튼을 자식수체크와 비교를 하면 imgcount는 이미 위의 다음버튼으로 크기가 늘어있는 상태임
+//그렇기에 기존과 동일하게 자식수체크 버튼 식을 0과 비교해야함

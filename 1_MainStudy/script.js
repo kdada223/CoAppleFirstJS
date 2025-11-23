@@ -57,7 +57,6 @@ document.querySelector('.bg-dark').addEventListener('click', function () {
 	}
 });
 
-
 let num = 5;
 setInterval(function () {
 	let buyAlert = document.querySelector('.alert-danger');
@@ -70,62 +69,51 @@ setInterval(function () {
 	num--;
 }, 1000);
 
-
-// 오늘의 숙제 :
-
-// 버튼1, 버튼3 기능도 알아서 만들어옵시다.
-
-// 넘 쉬워서 예습을 원하면 다음사진보기 & 이전사진보기 버튼과 기능도 만들어보십시오.
-// 심심한 사람들은 다음 이전버튼 기능만들기
 let imgcount = 0;
 let imgBox = document.querySelector('.slide-container');
-// document.querySelector('.nextImg').addEventListener('click', function () {
-// 	if (imgcount === 0) {
-// 		imgBox.style.transform = 'translateX(-100vw)';
-// 		imgcount = 1;
-// 	} else if (imgcount === 1) {
-// 		imgBox.style.transform = 'translateX(-200vw)';
-// 		imgcount = 2;
-// 	} else {
-// 		imgBox.style.transform = 'translateX(0vw)';
-// 		imgcount = 0;
-// 	}
-
-// });
-// document.querySelector('.beforeImg').addEventListener('click', function () {
-// 	if (imgcount === 0) {
-// 		imgBox.style.transform = 'translateX(-200vw)';
-// 		imgcount = 2;
-// 	} else if (imgcount === 1) {
-// 		imgBox.style.transform = 'translateX(0vw)';
-// 		imgcount = 0;
-// 	} else if (imgcount === 2) {
-// 		imgBox.style.transform = 'translateX(-100vw)';
-// 		imgcount = 1;
-// 	}
-// });
-//이전 버튼 헷갈렸던 코드
-// document.querySelector('.beforeImg').addEventListener('click', function () {
-// 	if (imgcount === 2) {
-// 		imgBox.style.transform = 'translateX(0vw)';
-// 		imgcount = 0;
-// 	} else if (imgcount === 1) {
-// 		imgBox.style.transform = 'translateX(-100vw)';
-// 		imgcount--;
-// 	} else {
-// 		imgBox.style.transform = 'translateX(-200vw)';
-// 		imgcount += 1;
-// 	}
-// });
+let 이미지컨트롤부모 = document.querySelector('.slide-container');
+let 자식수체크 = 이미지컨트롤부모.children.length;
+이미지컨트롤부모.style.width = 자식수체크 * 100 + 'vw'; //이렇게
 document.querySelector('.nextImg').addEventListener('click', function () {
 	imgcount++;
-	if (imgcount > 2) imgcount = 0;
+	if (imgcount >= 자식수체크) imgcount = 0;
 	imgBox.style.transform = `translateX(-${imgcount * 100}vw)`;
 });
 document.querySelector('.beforeImg').addEventListener('click', function () {
 	imgcount--;
-	if (imgcount < 0) imgcount = 2; // 0에서 이전 누르면 마지막으로
+	if (imgcount < 0) imgcount = 자식수체크 - 1; // 0에서 이전 누르면 마지막으로
 	imgBox.style.transform = `translateX(-${imgcount * 100}vw)`;
 });
-// (응용2) 사진이 4개, 5개가 되어도 다음버튼 기능이 잘 동작하려면?
 
+window.addEventListener('scroll', function () {
+	const progressBar = document.querySelector('.pageLoad');
+	let 타겟지점 = 100;
+	let 매장이름 = document.querySelector('.navbar-brand');
+	if (window.scrollY > 타겟지점) {
+		매장이름.classList.add('smfont');
+	} else {
+		매장이름.classList.remove('smfont');
+	}
+
+	const scrollTop = document.querySelector('html').scrollTop;
+	const clientHeight = document.querySelector('html').clientHeight;
+	const scrollHeight = document.querySelector('html').scrollHeight;
+
+	const progressItem = (scrollTop / (scrollHeight - clientHeight)) * 100;
+	progressBar.style.width = progressItem + '%';
+});
+let check = false;
+document.querySelector('.lorem').addEventListener('scroll', function (event) {
+	let 스크롤양 = document.querySelector('.lorem').scrollTop;
+	let 실제높이 = document.querySelector('.lorem').scrollHeight;
+
+	let 디브높이 = document.querySelector('.lorem').clientHeight;
+	if (스크롤양 + 디브높이 > 실제높이 - 10) {
+		if (!check) {
+			alert('완료');
+			check = true;
+		}
+	} else {
+		check = false;
+	}
+});
