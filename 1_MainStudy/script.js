@@ -17,6 +17,28 @@ document.querySelector('.loginBtn').addEventListener('click', function () {
 document.getElementById('close').addEventListener('click', function () {
 	document.querySelector('.black-bg').classList.remove('noneModal');
 });
+///////////////////////////////////////////검은배경 누르면 닫히게 만들어주세요~
+//브라우저 안에서는 여러가지 이벤트 버블링이 일어남
+//이벤트 버블링이 뭐냐? 상위 html로 퍼지는 현상이 일어난다는 것
+// white-bg를 클릭했다면 버블링현상으로 black-bg까지 눌리게 된것
+//코드 짠걸 보면 블랙비지눌르면 닫아주세요~ 라고 코드를 짬
+//그러면 아이디 입력input을 눌러보면? 타고올라가서 결국 블랙bg가 눌린것
+//  e.target 은 유저가 실제로 누른거
+// e.currentTarget;
+let 까만배경 = document.querySelector('.black-bg');
+까만배경.addEventListener('click', function (e) {
+	// e.target; //유저가 실제로 누른거
+	// console.log(e.target);
+	// e.currentTarget; //이벤트리스너 달린 곳
+	// this; //이것도 동일하게 사용 가능
+	// console.log(e.currentTarget);
+	// e.preventDefault(); //이벤트 기본동작 막는 방법
+	// e.stopPropagation(); //이벤트 버블링 막아주세요
+	if (e.target == 까만배경) {
+		document.querySelector('.black-bg').classList.remove('noneModal');
+	}
+});
+
 // form부분
 document.querySelector('.loginForm').addEventListener('submit', function (event) {
 	const formId = document.getElementById('idInput').value; // 클릭할 때마다 최신 값 가져오기
