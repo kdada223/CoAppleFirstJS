@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="dstyle.css" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="card-group container">
+    <div class="card">
+      <img src="https://placehold.co/600">
+      <div class="card-body">
+        <h5>Card title</h5>
+        <p>가격 : 70000</p>
+        <button class="btn btn-danger">주문하기</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    //오늘의 숙제 :
+    //list.html 만들고 하단 코드를 복사붙여넣기합니다.
+    //그럼 상품 3개를 진열할 수 있는 카드레이아웃이 나옵니다. (bootstrap 필요) 
+    //products 변수안에 상품데이터도 준비되어있는데
+    //자바스크립트를 열심히 짜서 3개의 상품 제목, 가격을 html에 전부 꽂아넣어오십시오.
+    //간단한 거니까 여기서 그냥 만들기
+
+    var products = [
+      { id: 0, price: 70000, title: 'Blossom Dress' },
+      { id: 1, price: 50000, title: 'Springfield Shirt' },
+      { id: 2, price: 60000, title: 'Black Monastery' }
+    ];
+
+    let cardlist = document.querySelector('.card-group');
+
+
+
+    for (let i = 0; i < products.length; i++) {
+      let item = document.createElement('div');
+      item.innerHTML = `
+        <div class="card">
+    <img src="https://placehold.co/600">
+    <div class="card-body">
+      <h5>${products[i].title}</h5>
+      <p>가격 : ${products[i].price}</p>
+      <button class="btn btn-danger">주문하기</button>
+    </div>
+  </div>
+`;
+      cardlist.appendChild(item.firstElementChild);
+    }
+
+
+
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
