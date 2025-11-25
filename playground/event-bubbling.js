@@ -1,11 +1,4 @@
-Copilot said: 알겠어! **이벤트 버블링/위임 관련 핵심을 직접
-알겠어!
-이벤트 버블링/위임 관련 핵심을 직접 손으로 구현하고 실험해볼 수 있는 Playground
-문제 형식으로 준비할게.
 
-실전 구조(모달, 탭, 리스트, 중첩 클릭 등)에서 버블링, e.target vs e.currentTarget, 이벤트 위임, stopPropagation 등
-직접 채울 코드 영역(힌트/추가 공부 주제), 주석에 문제 설명, CS 확장 포인트까지 포함!
-JavaScript
 // [문제1] 이벤트 버블링 실험: 아래 구조에서 <div class="parent"> 바깥과 <button class="child"> 버튼 각각 클릭시
 // 어떤 핸들러가 실행되는지 관찰하세요. (e.target, e.currentTarget, this 비교!)
 //
