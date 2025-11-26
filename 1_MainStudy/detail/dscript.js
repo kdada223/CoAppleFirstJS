@@ -18,55 +18,68 @@ function tapOpen(i) {
 }
 
 let car = ['소나타', 50000, 'white'];
-//array 자료 추가 수정 하는법
-//car[0] = '아반떼';
-//수정하는 방법(하드코딩)
-//car[3] = 2;
-//추가하는 방법
-// let car2 = {
-// 	name: '소나타',
-// 	price: 50000,
-// 	color: 'white',
-// };
-//자료 이름 부분을 key 값을 value 라고 부름 키 밸류 형태로 저장가능한게 장점
-//console.log(car2.name);
-//obj에서 자료꺼내는 방법
-//car2.price = 60000;
-//obj 수정하는 방법
-
-//arr 과 obj 차이
-//arr은 순서대로 자료를 저장 obj는 자료에 이름을 붙여 저장
-//array는 자료간 순서가 존재함, obj는 순서개념이 없음 키밸류로 저장하기 때문
-//arr 는 자료간 정렬도 가능함.
-//car.sort();
-//sort라는 함수를 쓰면 숫자 -> abc -> 가나다 순으로 정렬됨
-//중간에 자르기도 가능
-//car2.slice(1, 3);
-//1번 이후 3번 이전 까지 잘라줌
-//자료검색도 가능, 맨앞/맨뒤에 자료추가 가능
-
-//오늘의 숙제
-//자바스크릅트 써서 car2에 있던 데이터들 html에 꽂아서 보여주기
-
-//document.querySelector('.carInfor').innerHTML = `${car2.name} /  ${car2.price}`;
-//백틱 써서 간단히 구현
-
-//array obj - 2
 let car2 = {
 	name: '소나타',
 	price: [50000, 3000, 4000],
 };
-//obj안에 아무거나 다 넣을 수 있음 obj,arr 넣기도 가능
-//그러면 obj안에 있는 배열은 어떻게 꺼내올까연?
-//그냥 obj꺼내서 그 안에 있는 배열 가져오면 됨
-document.querySelector('.car-price').innerHTML = `가격: ${car2.price[0]}`;
-//복잡하게 생긴 arr,obj 자료 다룰 땐 출력해보고 시작기호도 확인하면 쉬움
 
-//유저가 웹서비스를 이용할 때 개발 방식의 2가지 정도 있는데
-//서버에서 html을 완성해서 유저한테 보내주는방식
-//빈 html 파일과 데이터를 같이 보내고 실제로 html완성하는걸 js에서 시킴 그러면 유저 브라우저에서 작동함
-//첫번째 방법을 sever-side rendering
-//서버가 html 다 만들어야해서 서버가 귀찮음
-//두번째 방법을 client-side rendering
-//서버가 좀 편하다 2번 방식으로 대부분 개발을 함 그래서 동적 생성이 필요한 것임
-//데이터를 html에 꼽는 걸 데이터바인딩이라고 부름
+document.querySelector('.car-price').innerHTML = `가격: ${car2.price[0]}`;
+
+//옵션에서 셔츠를 선택하면 하단에 사이즈 셀렉터 하나 더 추가해주셈
+let selectPr = document.querySelector('.form-group');
+// let newselect = `<select class="form-select mt-2">
+// <option>95</option>
+// <option>100</option>
+// </select>`; //셔츠도 지우고 팬츠도 지우고 서버에서 동적으로 받아온다고 생각하고 만들기
+// let 수동pants = `<select class="form-select mt-2">
+// <option>28</option>
+// <option>30</option>
+// </select>`; //이걸 쓰는게 아니라 서버에서 가져온다고 생각하고 배열로 대강 만들어보자고
+let pants = [28, 30, 32, 34];
+let shirts = [90, 95, 100];
+document.querySelector('.form-select').addEventListener('change', function (e) {
+	let secondSelect = document.querySelectorAll('.form-select')[1];
+	let target = e.target.value;
+	if (secondSelect) {
+		// secondSelect.remove(); //기존에 수동으로 받아오던거 없앰
+		secondSelect.innerHTML = '';
+	}
+	if (target === '셔츠') {
+		// selectPr.insertAdjacentHTML('beforeend', newselect); //기존에 수동으로 받아오던거 없앰
+		secondSelect.innerHTML = '';
+		shirts.forEach((item) => {
+			secondSelect.insertAdjacentHTML('beforeend', `<option>${item}</option>`);
+		});
+	} else if (target === '바지') {
+		// selectPr.insertAdjacentHTML('beforeend', 수동pants); //기존에 수동으로 받아오던거 없앰
+		secondSelect.innerHTML = '';
+		pants.forEach((item) => {
+			secondSelect.insertAdjacentHTML('beforeend', `<option>${item}</option>`);
+		});
+	}
+});
+
+//자바스크립트로 html 생성법 너무 길고 복잡함
+// let a = document.createElement('p');
+// a.innerHTML = 'ㅎㅇ';
+// a.classList.add('?');
+// document.querySelector('.anything').appendChild(a);
+//생성법 2
+// let newhtml = '<p>ㅎㅇ</p>';
+// document.querySelector('.anything').insertAdjacentHTML('beforeend', newhtml);
+//insertAdjacentHTML 앞에 요소 안에 문자형 html을 추가해주세요 라는 말이고 첫번째 파라미터가 어느위치에 추가할지 beforeend 맨밑에 추가
+//성능면에서는 createElement 쓰는게 더 빠르다. 2배정도 빠름
+
+//forEach에 대해 배웠음 첫번째 파라미터는 내가 돌릴아이템, 두번째는 인덱스값 이거는 자주쓰는거라 간단함
+//for in은 객체를 돌릴 때 씀
+
+let obj = { name: 'kim', age: 20 };
+for (let key in obj) {
+	console.log(obj[key]); // 객체의 밸류값이 나옴
+	console.log(key); //객체의 키값이 나옴
+}
+//반복문 용도
+//코드반복, 객체/배열 데이터 전부 꺼낼 때 사용
+
+//화살표함수에 대해서 설명할텐데 화살표함수 안의 this는 기존 function을 사용했을 떄와 뜻이 다름
+//화살표함수 안에서 쓰면 바깥에서 this를 가져오는데 function안에서 쓰면 안에서 알맞게 재정의됨
