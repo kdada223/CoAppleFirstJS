@@ -1,4 +1,4 @@
-# Chap3 - 동적 셀렉터/반복문/화살표 함수 this, forEach & for in의 기본
+# Chap2 - 동적 셀렉터/반복문/화살표 함수 this, forEach & for in의 기본
 
 ---
 
