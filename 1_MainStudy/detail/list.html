@@ -96,17 +96,20 @@
 
     document.querySelector('#namereturn').addEventListener('click', () => {
       products.sort((a, b) => {
-       return a.name > b.name ? -1 : 1
-     })
-   포이치(products);
+        return a.title > b.title ? -1 : 1
+      })
+      cardlist.innerHTML = ''
+      포이치(products);
+      clickcount = 0
+      document.querySelector('#moreData').style.display = 'block'
     })
 
-    
+
     let newarr = products.filter((a) => { return a.price <= 60000 });
-    document.querySelector('#priceUnder').addEventListener ('click', ()=>{
-    cardlist.innerHTML = ''
-    포이치(newarr);
-    })  
+    document.querySelector('#priceUnder').addEventListener('click', () => {
+      cardlist.innerHTML = ''
+      포이치(newarr);
+    })
 
     //더보기 버튼 누르면 https://codingapple1.github.io/js/more1.json 여기로 get요청해서 상품받아와보셈 //완!!
     document.querySelector('#moreData').addEventListener('click', () => {
