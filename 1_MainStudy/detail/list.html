@@ -17,7 +17,7 @@
   <div class="container my-3"><button class="btn btn-danger" id="priceArr">가격정렬</button></div>
 
   <div class="container my-3"><button class="btn btn-danger" id="moreData">더보기</button></div>
-  <div class="container my-3"><button class="btn btn-danger" id="moreData">가나다 역순 정렬</button></div>
+  <div class="container my-3"><button class="btn btn-danger" id="namereturn">가나다 역순 정렬</button></div>
   <div class="container my-3"><button class="btn btn-danger" id="priceUnder">6만원 이하 상품보기 필터사용</button></div>
 
   <script>
@@ -94,6 +94,14 @@
       document.querySelector('#moreData').style.display = 'block'
     })
 
+    document.querySelector('#namereturn').addEventListener('click', () => {
+      products.sort((a, b) => {
+       return a.name > b.name ? -1 : 1
+     })
+   포이치(products);
+    })
+
+    
     let newarr = products.filter((a) => { return a.price <= 60000 });
     document.querySelector('#priceUnder').addEventListener ('click', ()=>{
     cardlist.innerHTML = ''
