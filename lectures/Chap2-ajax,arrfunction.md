@@ -1,4 +1,4 @@
-# Chap4 - 고급 배열 메서드(map, filter, sort), Ajax(fetch), 데이터 동적 바인딩
+# Chap2 - 고급 배열 메서드(map, filter, sort), Ajax(fetch), 데이터 동적 바인딩
 
 ---
 
