@@ -10,18 +10,18 @@
 <body>
   <div class="seeItem" style="max-width: 200px; background-color: black; min-height: 500px; color: white;"></div>
   <script>
-    let 보여줄거 = document.querySelector('.seeItem')
-    let 저장소 = localStorage.getItem('cart')
-    let 변환 = JSON.parse(저장소)
-
-    window.addEventListener('storage', (e) => {
-      변환 = JSON.parse(저장소)
-      if (e.newValue) {
-        보여줄거.innerHTML = 변환
-      }
-    })
+    let localGet = JSON.parse(localStorage.getItem('cart'))
+    let localBucket = document.querySelector('.seeItem')
+    장바구니(localGet)
 
 
+    function 장바구니(localArr) {
+      localArr.forEach(item => {
+        let bucketItem = `<p>${item}</p>`
+        localBucket.insertAdjacentHTML('beforeend', bucketItem)
+      })
+
+    }
   </script>
 </body>
 
