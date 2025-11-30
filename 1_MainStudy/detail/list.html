@@ -31,14 +31,69 @@
     //캐시스토리지는 htms css js 파일 저장하는 곳임
     //로컬스토리지랑 세션스토리지 용량은 5MB 문자/숫자만 저장가능함 arr,obj 못넣음 넣으려고하면 강제로 문자열로바꿔줌
     //그런데 둘의 차이는 로컬스토리지는 사이트재접속해도 유지됨 세션스토리지는 사이트나가면 자동삭제됨
+    //데이터를 저장하는 방법
+    // localStorage.setItem('데이터이름', '데이터값')
+    //데이터를 뽑고 싶다?
+    // localStorage.getItem('데이터이름')
+    //로컬스토리지 데이터를 삭제하고싶다?
+    // localStorage.removeItem('데이터이름')
+    //편법하나 알아보자 로컬스토리지에는 문자,숫자만 저장가능하다고 했지만 arr,obj자료형도 강제로 저장을 할 수 있음
+    // localStorage.setItem('num', [1, 2, 3])
+    //이렇게 저장하고 로컬스토리지에서 보면 강제로 대괄호를 없애고 문자열로 저장한걸 볼 수 있음 
+    //어떤 편법이냐?
+    //arr,obj를 만들고 이걸 JSON으로 변경하면됨
+    // let arr = [1, 2, 3]
+    //let newarr2 = JSON.stringify(arr)
+    // localStorage.setItem('num', newarr2)
+    //이렇게 저장하면 이 데이터를 꺼내도 잘 저장이 되어있음
+    // let getItem = localStorage.getItem('num')
+    //다만 이거는 arr이 아니라 문자인걸 인지해야함
+    //그래서 자료를 꺼내고 싶어도 
+    //console.log(getItem[0]) //이렇게 꺼내면 [ 이거 하나 나옴
+    //그래서 다시 arr,obj로 변경해줘야함
+    //이렇게 변환해주면 인덱싱도 가능
+    // console.log(JSON.parse(getItem)[0])
+    //세션스토리지 사용법은 로컬스토리지와 동일하고 이름만 로컬 -> 세션으로 변경해주면 끝!
+    //로컬스토리지 데이터를 수정하고 싶으면?
+    //수정을 쉽게 해주는 함수나 훅은 없지만 3단계를 걸쳐 수정을 할 수 있음
+    //1. 자료꺼내기 2. 꺼낸거 수정하기 3. 다시넣기 
+    //숙제1. 구매버튼 누르면 누른 상품면 로컬스토리지에 저장하기
+    //힌트 구매버튼을 누르면 내 형제요소 찾는 법 알아봐야함 
+    //로컬스토리지가 비어있을 때/ 뭐가 있을 때 저장방식을 다르게 짜야함
+    //숙제2. cart.html 방문시 local스토리지에 저장된 상품명들 다 보여주기
     var products = [
       { id: 0, price: 70000, title: 'Blossom Dress' },
       { id: 1, price: 50000, title: 'Springfield Shirt' },
       { id: 2, price: 60000, title: 'Black Monastery' }
     ];
 
+    let noarr = []
+    let arr = JSON.stringify(noarr)
+
+
     let cardlist = document.querySelector('.row');
     let clickcount = 0
+
+
+    포이치(products);
+
+    let cartSave = document.querySelectorAll('.buy')
+    products.forEach((item, index) => {
+      cartSave[index].addEventListener('click', () => {
+        if (!noarr.includes(item.title)) {
+          noarr.push(item.title)
+          arr = JSON.stringify(noarr)
+          localStorage.setItem('cart', arr)
+        }
+        else {
+          alert('이미있음')
+        }
+
+
+      })
+    })
+
+
     function 포이치(runArr) {
       runArr.forEach(item => {
         let secCardList = `<div class="col-sm-4">
@@ -50,7 +105,7 @@
         cardlist.insertAdjacentHTML('beforeend', secCardList)
       });
     }
-    포이치(products);
+
 
     document.querySelector('#priceArr').addEventListener('click', () => {
       products.sort((a, b) => { return a.price - b.price });
