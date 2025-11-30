@@ -15,77 +15,98 @@
     </div>
   </div>
   <div class="container my-3"><button class="btn btn-danger" id="priceArr">가격정렬</button></div>
-
+  <div class="container my-3"><button class="btn btn-danger" id="namereturn">가나다 역순 정렬</button></div>
+  <div class="container my-3"><button class="btn btn-danger" id="priceUnder">6만원 이하</button></div>
   <div class="container my-3"><button class="btn btn-danger" id="moreData">더보기</button></div>
-  <div class="container my-3"><button class="btn btn-danger" id="moreData">가나다 역순 정렬</button></div>
-  <div class="container my-3"><button class="btn btn-danger" id="moreData">6만원 이하 상품보기 필터사용</button></div>
 
   <script>
-
-    // let arr = [7, 1, 5, 2, 3, 40, 50]
-    // //arr.sort() //sort는 문자순으로 정렬해주세요~
-    // //숫자정렬(오름차순)을 하고 싶으면
-    // arr.sort((a, b) => { return a - b })
-    // //내림차순은? b-a하면됨
-    // //동작원리 알아봐야함
-    // //a,b는 배열 안의 자료임
-    // //return에는 아무 수나 들어갈 수 있는데 오른쪽이 양수면 a를 오른쪽으로 옮김
-    // //오른쪽이 음수면 b를 오른쪽으로 옮김 
-    // //그래서 큰 숫자일 수록 뒤로 감
-    // console.log('숫자정렬임', arr)
-    // //array 자료에서 내가 원하는 것만 필터하려면?
-    // //필터함수를 쓰는데 콜백함수의 첫번째 파라미터는 배열에 있던 자료
-    // //그리고 안에 return 문 쓰고 조건식이 필요함
-    // //4보다 작은걸 arr자료에서 하나하나 빼서 검사 후 남겨줌
-    // //filter 결과는 변수에 저장해서 써야함 원본을 변형시키는 sort와는 다르게 새로운걸 만든다고 생각하셈
-    // // let newarr = arr.filter((a) => { return a < 4 });
-    // // console.log('새배열', newarr)
-    // //필터랑 비슷한 map이라는 함수는 array자료들을 전부 똑같이 변형 시킬 수 있음
-    // //파라미터 의미랑 리턴문 필요한 것도 똑같음
-    // //언제쓰냐? 게임에서 보면 미국돈으로 되어있는거 한화로 바꿀 수도 있잖슴? 
-    // //그런거 쓸 때 게임가격이 배열로 들어가있으면 a * 환률 하면 자연스레 바뀜
-    // let newarr = arr.map((a) => { return a * 4 });
-    // console.log('새배열', newarr)
-    // let arr2 = ['a', 'c', 'b', 'e', 'd', 'A']
-    // //가나다순 정렬은?
-    // //위에보면 그냥 sort만 쓰면 문자순 정렬임
-    // arr2.sort();
-    // console.log('가나다순', arr2)
-    // //다나가 역순 정렬은? 
-    // arr2.reverse();
-    // console.log('가나다역순', arr2)
-    // //그런데 이거 말고 sort에서도 정렬이 가능합니다.
-    // arr2.sort((a, b) => {
-    //   return a > b ? -1 : 1
-    //   //원리를 기억하면 됨 오른쪽이 양수면 a를 오른쪽으로 옮김
-    //   //음수면 b 오른쪽으로 옮김 이 원리
-    // })
-    // console.log('왔다갔다 할 수 있음', arr2)
-    // //sort 함수는 원본을 변형시켜버립니다. 
-    // //원본을 변형시켜버리면 나중에 원본으로 되돌아갈 수 없으니까 귀찮아질 수 있어서
-    // //array / object 자료 조작시엔 원본을 따로 복사해두고 조작하는 경우도 있습니다. 
-
-
+    //구매버튼을 누르면 장바구니에 상품명추가 실제 서비스면 서버로 보냈을듯함
+    //데이터를 저장할 다른 공간을 만들어야하는데 가장 쉬운 곳은 변수인데 단점은 변수는 페이지 재로드시 초기화됨
+    //데이터 영구적으로 저장하기에 적합하지 않음
+    //반영구적으로 저장할 수 있는 방법이 있는데 그게 로컬스토리지임
+    //브라우저에 저장할 수 있는 방법중
+    //로컬스토리지랑 세션스토리지는 가장 쉽게 키: 밸류 형태로 데이터를 저장할 수있음
+    //인덱스DB는 데이터가 크고 복잡하다 구조화된 대용량데이터 저장시 사용
+    //쿠키는 보통로그인 정보 저장(인증정보)
+    //캐시스토리지는 htms css js 파일 저장하는 곳임
+    //로컬스토리지랑 세션스토리지 용량은 5MB 문자/숫자만 저장가능함 arr,obj 못넣음 넣으려고하면 강제로 문자열로바꿔줌
+    //그런데 둘의 차이는 로컬스토리지는 사이트재접속해도 유지됨 세션스토리지는 사이트나가면 자동삭제됨
+    //데이터를 저장하는 방법
+    // localStorage.setItem('데이터이름', '데이터값')
+    //데이터를 뽑고 싶다?
+    // localStorage.getItem('데이터이름')
+    //로컬스토리지 데이터를 삭제하고싶다?
+    // localStorage.removeItem('데이터이름')
+    //편법하나 알아보자 로컬스토리지에는 문자,숫자만 저장가능하다고 했지만 arr,obj자료형도 강제로 저장을 할 수 있음
+    // localStorage.setItem('num', [1, 2, 3])
+    //이렇게 저장하고 로컬스토리지에서 보면 강제로 대괄호를 없애고 문자열로 저장한걸 볼 수 있음 
+    //어떤 편법이냐?
+    //arr,obj를 만들고 이걸 JSON으로 변경하면됨
+    // let arr = [1, 2, 3]
+    //let newarr2 = JSON.stringify(arr)
+    // localStorage.setItem('num', newarr2)
+    //이렇게 저장하면 이 데이터를 꺼내도 잘 저장이 되어있음
+    // let getItem = localStorage.getItem('num')
+    //다만 이거는 arr이 아니라 문자인걸 인지해야함
+    //그래서 자료를 꺼내고 싶어도 
+    //console.log(getItem[0]) //이렇게 꺼내면 [ 이거 하나 나옴
+    //그래서 다시 arr,obj로 변경해줘야함
+    //이렇게 변환해주면 인덱싱도 가능
+    // console.log(JSON.parse(getItem)[0])
+    //세션스토리지 사용법은 로컬스토리지와 동일하고 이름만 로컬 -> 세션으로 변경해주면 끝!
+    //로컬스토리지 데이터를 수정하고 싶으면?
+    //수정을 쉽게 해주는 함수나 훅은 없지만 3단계를 걸쳐 수정을 할 수 있음
+    //1. 자료꺼내기 2. 꺼낸거 수정하기 3. 다시넣기 
+    //숙제1. 구매버튼 누르면 누른 상품면 로컬스토리지에 저장하기
+    //힌트 구매버튼을 누르면 내 형제요소 찾는 법 알아봐야함 
+    //로컬스토리지가 비어있을 때/ 뭐가 있을 때 저장방식을 다르게 짜야함
+    //숙제2. cart.html 방문시 local스토리지에 저장된 상품명들 다 보여주기
     var products = [
       { id: 0, price: 70000, title: 'Blossom Dress' },
       { id: 1, price: 50000, title: 'Springfield Shirt' },
       { id: 2, price: 60000, title: 'Black Monastery' }
     ];
 
+    let noarr = []
+    let arr = JSON.stringify(noarr)
+
+
     let cardlist = document.querySelector('.row');
     let clickcount = 0
+
+
+    포이치(products);
+
+    let cartSave = document.querySelectorAll('.buy')
+    products.forEach((item, index) => {
+      cartSave[index].addEventListener('click', () => {
+        if (!noarr.includes(item.title)) {
+          noarr.push(item.title)
+          arr = JSON.stringify(noarr)
+          localStorage.setItem('cart', arr)
+        }
+        else {
+          alert('이미있음')
+        }
+
+
+      })
+    })
+
+
     function 포이치(runArr) {
       runArr.forEach(item => {
         let secCardList = `<div class="col-sm-4">
         <img src="https://placehold.co/600" class="w-100">
         <h5>${item.title}</h5>
         <p>가격 : ${item.price}</p>
+        <button class='buy'>구매</button>
       </div>`
         cardlist.insertAdjacentHTML('beforeend', secCardList)
       });
     }
-    포이치(products);
-    //버튼누르면 products를 가격순 정렬해봅시다
+
+
     document.querySelector('#priceArr').addEventListener('click', () => {
       products.sort((a, b) => { return a.price - b.price });
       cardlist.innerHTML = ''
@@ -94,26 +115,34 @@
       document.querySelector('#moreData').style.display = 'block'
     })
 
-    //더보기 버튼 누르면 https://codingapple1.github.io/js/more1.json 여기로 get요청해서 상품받아와보셈 //완!!
+    document.querySelector('#namereturn').addEventListener('click', () => {
+      products.sort((a, b) => {
+        return a.title > b.title ? -1 : 1
+      })
+      cardlist.innerHTML = ''
+      포이치(products);
+      clickcount = 0
+      document.querySelector('#moreData').style.display = 'block'
+    })
+
+
+    let newarr = products.filter((a) => { return a.price <= 60000 });
+    document.querySelector('#priceUnder').addEventListener('click', () => {
+      cardlist.innerHTML = ''
+      포이치(newarr);
+    })
+
+
     document.querySelector('#moreData').addEventListener('click', () => {
       if (clickcount == 0) {
         fetch('https://codingapple1.github.io/js/more1.json').then(response => {
           return response.json();
         }).then(data => {
-          //가져온 데이터로 더보기 버튼 눌렀을 때 카드 3개 더 만들어주셈 //완!!
+
           포이치(data)
         })
       }
-      // 1. 더보기버튼을 2번째 누르면 7, 8, 9번째 상품을 더 가져와서 html로 보여주십시오
-      // https://codingapple1.github.io/js/more2.json 여기로 GET요청하면 7,8,9번째 상품이 도착합니다.
-      // 힌트는 유저가 더보기버튼을 몇 번 눌렀는지를 어디 기록해놔야
-      // 내가 버튼 누를 때마다 어디로 GET요청할 지 판단할 수 있겠군요. 
-      // 그리고 그 다음 10, 11, 12번 상품은 없으니
-      // 버튼을 3번은 못누르게 버튼을 숨기거나 그래도 좋을듯요 //구현완!
-      //2. 유사한 코드가 발생하고 있습니다.
-      // 지금 코드를 잘 보면 forEach() 반복문을 2번 쓴 것 같은데 
-      // 이 코드들이 매우 유사해보입니다.
-      // 함수나 그런걸로 축약해보는 연습도 해보면 좋을 것 같군요 //구현완!
+
       else if (clickcount == 1) {
         fetch('https://codingapple1.github.io/js/more2.json').then(response => {
           return response.json();
@@ -125,6 +154,7 @@
 
       clickcount += 1
     })
+
 
 
 
@@ -168,60 +198,7 @@
 
 </body>
 
+
+
+
 </html>
-
-<!-- 유저가 데이터달라고 요청을 하면 데이터를 보내주는 간단한 프로그램일 뿐입니다.
-
-네이버웹툰 서버 : 유저가 웹툰 달라고 하면 웹툰 보내주는 프로그램
-
-유튜브 서버 : 유저가 영상 달라고 하면 영상 보내주는 프로그램
-
-입니다. -->
-<!-- 근데 그냥 데이터달라고 떼쓰면 주는게 아니라
-
-서버에 데이터를 요청할 때는
-
-1. 어떤 데이터인지 url로 잘 기재해야하고
-
-2. 어떤 방법으로 요청할지 결정해야 (GET/POST 등)
-GET은 데이터 읽을 때 POST는 데이터 보낼 때
-
-데이터를 보내줍니다. -->
-
-<!-- GET/POST 요청하는 법?
-
-
-
-GET요청은 서버에 있던 데이터를 읽고싶을 때 주로 사용하고
-
-POST요청은 서버로 데이터를 보내고 싶을 때 사용합니다.
-
-(서버는 유저데이터를 DB에 저장해주는 역할도 해서요)
-
-실은 PUT, DELETE 요청도 있긴 합니다.
-
-
-
-
-
-GET요청을 날리고 싶으면 가장 쉬운 방법은 브라우저 주소창입니다.
-
-거기에 url 적으면 그 곳으로 GET요청을 날려줍니다.
-
-진짠지 테스트해보셈
-
-
-
-POST요청을 날리고 싶으면
-
-<form action="요청할url" method="post"> 태그 이용하면 됩니다.
-
-  그럼 폼이 전송되었을 때 POST요청을 날려줍니다.
-
-  서버에서 데이터를 보내주는 역할만 하는게 아니라 가끔가다가 유저의 데이터를 받아서 DB에 저장하는 상황도있어서
-  POST요청도 필요 
-
-  근데 GET, POST 요청을 저렇게 날리면 단점이 뭐냐면 브라우저가 새로고침됩니다. -->
-<!-- 
-  그 새로고침이 마음에 안든다? 그럴 때 ajax를 사용한다 
-  새로고침 없이 GET,POST 요청하는 기능 -->

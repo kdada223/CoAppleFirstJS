@@ -34,5 +34,3 @@ function renderCards(arr) {
 //   'https://codingapple1.github.io/js/more2.json'
 // - 이미 2번 모두 데이터를 받아오면 버튼 사라지게!
 // - 필요한 html: <button id="getMore">더보기</button>
-
-
