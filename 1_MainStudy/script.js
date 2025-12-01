@@ -167,7 +167,7 @@ slideItem.forEach((item, index) => {
 	});
 	item.addEventListener('mouseup', (e) => {
 		slideTouch = true;
-		if (e.clientX - 시작좌표 < -500) {
+		if (e.clientX - 시작좌표 < -200) {
 			imgcount++;
 			console.log(e.clientX - 시작좌표);
 			imgBox.style.transform = `translateX(-${imgcount * 100}vw)`;
