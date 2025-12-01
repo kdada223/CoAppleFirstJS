@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="scroll.css">
+  <title>스크롤</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+  <div class="card-background">
+    <div class="card-box">
+      <img src="../assets/IMG/Phone.png">
+    </div>
+    <div class="card-box">
+      <img src="../assets/IMG/Phone2.png">
+    </div>
+    <div class="card-box">
+      <img src="../assets/IMG/Phone3.png">
+    </div>
+  </div>
+  <script>
+    // window.addEventListener('scroll', () => {
+    //   const scrollTop = document.querySelector('html').scrollTop;
+    //   //650 ~ 1150 까지 스크롤바를 내리면, 첫째카드의 opacity 속성을 1 ~ 0 으로 서서히 변경해주셈
+    //   let y = 
+    //   document.querySelectorAll('.card-box')[0].style.opacity = '0'
+
+    // })
+    //숙제 : 투명도 뿐만 아니라 카드가 0.9배 정도로 서서히 작아지는 것도 똑같이 구현해봅시다. 
+    $(window).scroll(() => {
+      let 높이 = $(window).scrollTop();
+
+      // let y = a * 높이 + b
+      // 1 = a * 650 + b
+      // 0 = a * 1150 + b
+      // a = -1/500
+      // b = 115/50
+      //1차함수를 사용해서 만든거임
+      let y = (-1 / 500) * 높이 + (115 / 50)
+      $('.card-box').eq(0).css('opacity', y)
+    })
+  </script>
+
+</body>
+
+</html>

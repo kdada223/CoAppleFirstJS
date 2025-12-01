@@ -61,14 +61,14 @@
     //힌트 구매버튼을 누르면 내 형제요소 찾는 법 알아봐야함 
     //로컬스토리지가 비어있을 때/ 뭐가 있을 때 저장방식을 다르게 짜야함
     //숙제2. cart.html 방문시 local스토리지에 저장된 상품명들 다 보여주기
+    //응용숙제 숙제1,2를 마쳤으면 중복체크해보기(완료했음 이미), 상품수량도 같이 저장 obj형식으로 상품명과 수량을 같이 저장하게 만들기
     var products = [
       { id: 0, price: 70000, title: 'Blossom Dress' },
       { id: 1, price: 50000, title: 'Springfield Shirt' },
       { id: 2, price: 60000, title: 'Black Monastery' }
     ];
 
-    let noarr = []
-    let arr = JSON.stringify(noarr)
+    let noarr = JSON.parse(localStorage.getItem('cart')) || [];
 
 
     let cardlist = document.querySelector('.row');
