@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="switch.css">
+  <title>스크롤</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+
+  <div id="quiz">
+    <h4>물에 빠지면 누구 먼저 구할거임?</h4>
+    <button>와이프</button>
+    <button>부모님</button>
+    <button>키우던 개</button>
+  </div>
+  <script>
+    //스위치문
+    //if문은 다양한 조건식을 사용할 수 있음
+    //스위치는 변수 1개만 테스트 가능
+    // 등호 비교만 가능하다
+    //대신 스위치는 깔끔해보임
+    //변수 === 4
+    //변수 === 3
+    //break는 스위치 문을 중지시켜달라는건데 break 가 없으면
+    //밑에 있는 코드들까지 다 실행시켜버림
+    // let 변수 = 2 + 3
+    // switch (변수) {
+    //   case 3:
+    //     alert('변수가 3이네요')
+    //     break
+    //   case 4:
+    //     alert('변수가 4이네여')
+    //     break
+    //   default:
+    //     alert('아무것도 해당안됨')
+    // }
+
+
+    document.querySelector('#quiz').addEventListener('click', function (e) {
+      //캡쳐링으로 인해 어떤 버튼을 누르더라도 자식요소가 다 감지가 됨
+      // alert(e.target.innerHTML)//실제로 누른 버튼안의 글자 확인 테스트
+      switch (e.target.innerHTML) {
+        case '와이프':
+          alert('사랑꾼이네여')
+          break
+        case '부모님': alert('효자')
+          break
+        case '키우던 개': alert('니가 사람이냐')
+          break
+        default: alert('똑바로 클릭하삼')
+      }
+    })
+
+  </script>
+</body>
+
+</html>
