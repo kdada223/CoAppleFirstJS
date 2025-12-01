@@ -17,14 +17,7 @@ document.querySelector('.loginBtn').addEventListener('click', function () {
 document.getElementById('close').addEventListener('click', function () {
 	document.querySelector('.black-bg').classList.remove('noneModal');
 });
-///////////////////////////////////////////검은배경 누르면 닫히게 만들어주세요~
-//브라우저 안에서는 여러가지 이벤트 버블링이 일어남
-//이벤트 버블링이 뭐냐? 상위 html로 퍼지는 현상이 일어난다는 것
-// white-bg를 클릭했다면 버블링현상으로 black-bg까지 눌리게 된것
-//코드 짠걸 보면 블랙비지눌르면 닫아주세요~ 라고 코드를 짬
-//그러면 아이디 입력input을 눌러보면? 타고올라가서 결국 블랙bg가 눌린것
-//  e.target 은 유저가 실제로 누른거
-// e.currentTarget;
+
 let 까만배경 = document.querySelector('.black-bg');
 까만배경.addEventListener('click', function (e) {
 	// e.target; //유저가 실제로 누른거
@@ -93,9 +86,8 @@ setInterval(function () {
 
 let imgcount = 0;
 let imgBox = document.querySelector('.slide-container');
-let 이미지컨트롤부모 = document.querySelector('.slide-container');
-let 자식수체크 = 이미지컨트롤부모.children.length;
-이미지컨트롤부모.style.width = 자식수체크 * 100 + 'vw'; //이렇게
+let 자식수체크 = imgBox.children.length;
+imgBox.style.width = 자식수체크 * 100 + 'vw'; //이렇게
 document.querySelector('.nextImg').addEventListener('click', function () {
 	imgcount++;
 	if (imgcount >= 자식수체크) imgcount = 0;
@@ -139,3 +131,58 @@ document.querySelector('.lorem').addEventListener('scroll', function (event) {
 		check = false;
 	}
 });
+
+//캐러셀을 터치되게 만들려면 이런 기능이 들어있는데
+// 1. 드래그한 거리만큼 사진도 왼쪽으로 움직여야함
+// 2. 마우스를 떼었을 때 일정거리 이상 이동했으면 사진2 보여줌 아니면 사진1 보여줌
+// 기능1부터 만들어보는데 이거 만들려면 알아야할 이벤트가 3가지 정도있음
+// mouse 이벤트 3개
+// mousedown (어떤 요소에 마우스버튼 눌렀을 때)
+// mouseup (어떤 요소에 마우스버튼 뗐을 때)
+// mousemove (어떤 요소위에서 마우스 이동할 때)
+// 그러면 코드를 어떻게 짜야할까?
+// 현재 내가 찍은 마우스 위치에서 a px 만큼 이동하면 옮겨주세요~ 라고 코드를 짜면 될듯함
+//숙제 나머지 2,3번 사진도 스와이프 기능 만들기
+//첫 사진을 우측으로 스와이프 못하게 막으려면?
+let 시작좌표 = 0;
+let slideTouch = true;
+let slideItem = document.querySelectorAll('.slide-box');
+slideItem.forEach((item, index) => {
+	//어느정도 정상작동은 하지만 문제가 있는게 일단 클릭했을때 계속 첫번째 사진이 보이는게 문제임
+	//두번째 사진으로넘어가고 나서 슬라이드를 하기위해 사진을 누르면 2번째 사진이 눌린채로 스와이프 되야ㅕ하는데
+	//현재는 스와이프를 누르려고 보면 첫번째 사진으로 넘어가서 스와이프 되다가 조건을 만족해서 넘아가면 1-> 3으로 감
+	// 1 -> 2로 갔다가 2스와이프를 누르면 1화면이 보이다가 조건 만족시 3으로 넘어감
+	//그래서 결국 지금 버튼을 클릭했을때 뭔가 이상한거임
+	item.addEventListener('mousedown', (e) => {
+		imgcount = index;
+		시작좌표 = e.clientX; //시작좌표를 찍어주고
+		slideTouch = false;
+		imgBox.style.transform = `translateX(-${imgcount * 100}vw)`;
+	});
+	item.addEventListener('mousemove', (e) => {
+		// console.log(e.clientX - 시작좌표); // 이동거리
+		if (slideTouch === false) {
+			imgBox.style.transform = `translateX(${e.clientX - 시작좌표}px)`;
+		}
+	});
+	item.addEventListener('mouseup', (e) => {
+		slideTouch = true;
+		if (e.clientX - 시작좌표 < -500) {
+			imgcount++;
+			console.log(e.clientX - 시작좌표);
+			imgBox.style.transform = `translateX(-${imgcount * 100}vw)`;
+			imgBox.style.transition = 'transform all 0.5s';
+		} else {
+			imgBox.style.transform = `translateX(-${imgcount * 100}vw)`;
+			imgBox.style.transition = 'transform all 0.5s';
+		}
+		imgBox.style.transition = 'transform none';
+	});
+});
+
+//이 기능을 모바일에서 작동해보면 안되는걸 볼 수 있음
+//왜? 이벤트리스너가 달라서 그런거임
+//mouse 이벤트들을 touchstart, touchmove, touchend 로 변경해야함
+//touch이벤트를 가져다 쓸 때 그냥 가져다가 쓰는게 아니라 touches[0]을 만들어줘야 하는데
+//저거는 터치할 때 여러개를 동시에 터치할 수도 있다보니 하나만 터치했는지를 확인하려고 넣어놓은거임
+//그리고 touchend에서는 클리어인트X를 가져다 쓸 때 touches가 아니라 changedTouches[0] 라고 가져다 써야함

@@ -52,7 +52,7 @@
 
 .slide-container {
 	width: 100vw;
-	transition: all 1s;
+	/* transition: all 0.2s; */
 }
 .slide-box {
 	width: 100vw;
