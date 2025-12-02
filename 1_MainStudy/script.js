@@ -145,7 +145,7 @@ document.querySelector('.lorem').addEventListener('scroll', function (event) {
 //숙제 나머지 2,3번 사진도 스와이프 기능 만들기
 //첫 사진을 우측으로 스와이프 못하게 막으려면?
 let 시작좌표 = 0;
-let slideTouch = true;
+let slideTouch = false;
 let slideItem = document.querySelectorAll('.slide-box');
 slideItem.forEach((item, index) => {
 	//어느정도 정상작동은 하지만 문제가 있는게 일단 클릭했을때 계속 첫번째 사진이 보이는게 문제임
@@ -154,29 +154,27 @@ slideItem.forEach((item, index) => {
 	// 1 -> 2로 갔다가 2스와이프를 누르면 1화면이 보이다가 조건 만족시 3으로 넘어감
 	//그래서 결국 지금 버튼을 클릭했을때 뭔가 이상한거임
 	item.addEventListener('mousedown', (e) => {
-		imgcount = index;
 		시작좌표 = e.clientX; //시작좌표를 찍어주고
-		slideTouch = false;
-		imgBox.style.transform = `translateX(-${imgcount * 100}vw)`;
+		slideTouch = true;
 	});
 	item.addEventListener('mousemove', (e) => {
 		// console.log(e.clientX - 시작좌표); // 이동거리
 		if (slideTouch === false) {
-			imgBox.style.transform = `translateX(${e.clientX - 시작좌표}px)`;
+			imgBox.style.transition = 'transform none';
+			imgBox.style.transform = `translateX(${e.clientX - 시작좌표 - imgcount * 100}px)`;
 		}
 	});
 	item.addEventListener('mouseup', (e) => {
-		slideTouch = true;
-		if (e.clientX - 시작좌표 < -200) {
-			imgcount++;
-			console.log(e.clientX - 시작좌표);
-			imgBox.style.transform = `translateX(-${imgcount * 100}vw)`;
-			imgBox.style.transition = 'transform all 0.5s';
-		} else {
-			imgBox.style.transform = `translateX(-${imgcount * 100}vw)`;
-			imgBox.style.transition = 'transform all 0.5s';
+		slideTouch = false;
+		imgBox.style.transition = 'transform all 0.5s';
+		if (e.clientX - 시작좌표 < -200 && imgcount < 자식수체크 - 1) {
+			imgcount++;	
 		}
-		imgBox.style.transition = 'transform none';
+		if(e.clientX - 시작좌표 > 200 && imgcount > 0){
+			imgcount--;	
+		}
+		imgBox.style.transform = `translateX(-${imgcount * 100}vw)`;
+		
 	});
 });
 
